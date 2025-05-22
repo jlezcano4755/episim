@@ -1,0 +1,111 @@
+{
+  "population": 10000000,
+  "initial_exposed": 100,
+  "initial_infected": 50,
+  "epidemiology": {
+    "incubation_days": 5.0,
+    "infectious_days": 7.0,
+    "fatality": 0.02,
+    "R0": 5
+  },
+  "economy": {
+    "per_capita_daily": 60,
+    "initial_budget": 1000000000
+  },
+  "healthcare": {
+    "icu_capacity": 5000
+  },
+  "simulation": {
+    "sim_hours_per_step": 1,
+    "days_per_real_min": 5
+  },
+  "stochastic": {
+    "beta_noise_sd": 0.05,
+    "daily_mutation_prob": 0.02,
+    "mutation_beta_range": [
+      1.1,
+      1.4
+    ],
+    "mutation_mu_range": [
+      0.9,
+      1.2
+    ],
+    "superspreader_prob": 0.03,
+    "superspreader_size_range": [
+      500,
+      5000
+    ]
+  },
+  "actions": [
+    {
+      "name": "uso_mascarillas",
+      "cost": 200000000,
+      "upkeep": 1000000,
+      "beta_mult": 0.6
+    },
+    {
+      "name": "pruebas_infeccion",
+      "cost": 150000000,
+      "upkeep": 2000000,
+      "beta_mult": 0.85
+    },
+    {
+      "name": "trazabilidad_contactos",
+      "cost": 300000000,
+      "upkeep": 3000000,
+      "beta_mult": 0.9,
+      "prereq": [
+        "pruebas_infeccion"
+      ]
+    },
+    {
+      "name": "comunicacion_riesgos",
+      "cost": 50000000,
+      "upkeep": 500000,
+      "beta_mult": 0.95
+    },
+    {
+      "name": "cierre_fronteras_regionales",
+      "cost": 60000000,
+      "upkeep": 200000,
+      "beta_mult": 0.8,
+      "income_mult": 0.9,
+      "prereq": [
+        "uso_mascarillas"
+      ]
+    },
+    {
+      "name": "cierre_fronteras_nacionales",
+      "cost": 100000000,
+      "upkeep": 500000,
+      "beta_mult": 0.4,
+      "income_mult": 0.7,
+      "prereq": [
+        "cierre_fronteras_regionales"
+      ]
+    },
+    {
+      "name": "expandir_uci",
+      "cost": 250000000,
+      "upkeep": 2000000,
+      "mu_mult": 0.7
+    },
+    {
+      "name": "investigar_antivirales",
+      "cost": 400000000,
+      "gamma_mult": 1.2,
+      "cooldown_days": 60
+    },
+    {
+      "name": "investigar_vacuna",
+      "cost": 800000000,
+      "beta_mult": 0.8,
+      "vaccinate_total": 2000000,
+      "vaccinate_days": 90,
+      "prereq": [
+        "pruebas_infeccion"
+      ],
+      "cooldown_days": 90
+    }
+  ]
+}
