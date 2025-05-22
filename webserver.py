@@ -263,7 +263,7 @@ class Sim:
 # Initialization & Simulation Loop
 # ---------------------------------------------------------
 
-cfg_path = os.getenv('EPI_CFG_PATH', 'config_v2.json')
+cfg_path = os.getenv('EPI_CFG_PATH', 'config.json')
 CONFIG = load_config(cfg_path)
 sim = Sim(CONFIG)
 initial_count = sim.S + sim.E + sim.I + sim.R
